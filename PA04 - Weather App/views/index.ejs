@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <%- include('./partials/head'); %>
+    </head>
+	<body >
+        <header>
+            <%- include('./partials/header'); %>
+        </header>
+		<div >
+            <br>
+            <center>
+                <div>
+                    <img src="https://cdn-icons-png.flaticon.com/512/555/555603.png" width="91" height="88">
+                    <h3><%=location.name %></h3>
+                    <h4><%=location.lat %>&#176 N, <%=location.lat %>&#176 E</h4>
+
+                </div>
+                
+            <table>
+            <th>
+                <% for(things of forecast){%>
+                <td>
+                    <main class="container">
+                        <div class="card border-primary mb-3 ml-4 mt-4" style="max-width: 20rem;">
+                            <div class="card-body">
+                                <center>
+                                    <% 
+                                    let img;
+                                    if (things.skytextday == 'Mostly Clear' || things.skytextday == 'Clear') {
+                                        img = 'https://cdn-icons.flaticon.com/png/512/3222/premium/3222672.png?token=exp=1645012659~hmac=7e37324c0f6169961e83f83a11400493';
+                                    }
+                                    else if (things.skytextday == 'Partly Sunny' || things.skytextday == 'Mostly Sunny') {
+                                        img = 'https://cdn-icons.flaticon.com/png/512/1585/premium/1585352.png?token=exp=1645013517~hmac=bef6f60b133a052c31c8552880304325';
+                                    }
+                                    else if (things.skytextday == 'Mostly Cloudy' || things.skytextday == 'Partly Cloudy') {
+                                        img = 'https://cdn-icons-png.flaticon.com/512/899/899718.png';
+                                    }
+                                    else if (things.skytextday == 'T-Storms') {
+                                        img = 'https://cdn-icons.flaticon.com/png/512/2153/premium/2153135.png?token=exp=1645013604~hmac=1bf21bdcd246dc3117d47c38570cb4d2';
+                                    } 
+                                    else if (things.skytextday == 'Sunny') {
+                                        img = 'https://cdn-icons.flaticon.com/png/512/3222/premium/3222672.png?token=exp=1645012659~hmac=7e37324c0f6169961e83f83a11400493';
+                                    }  
+                                    else if (things.skytextday == 'Cloudy') {
+                                        img = 'https://cdn-icons-png.flaticon.com/512/899/899718.png';
+                                    }                                      
+                                    else if (things.skytextday == 'Rain' || things.skytextday == 'Rain Showers' || things.skytextday == 'Light Rain') {
+                                        img = 'https://cdn-icons-png.flaticon.com/512/2948/2948175.png';
+                                    }  
+                                    else if (things.skytextday == 'Rain w/ thunderstorms') {
+                                        img = 'https://cdn-icons.flaticon.com/png/512/3238/premium/3238823.png?token=exp=1645020430~hmac=dec19819beeb9c0ecbb32e28ec880586';
+                                    }  
+                                    else if (things.skytextday == 'Snowy') {
+                                        img = 'https://cdn-icons-png.flaticon.com/512/1779/1779743.png';
+                                    }  
+                                    else if (things.skytextday == 'Windy') {
+                                        img = 'https://cdn-icons-png.flaticon.com/512/3026/3026368.png';
+                                    }  
+                                    else if (things.skytextday == 'Thunderstorms') {
+                                        img = 'https://cdn-icons.flaticon.com/png/512/3238/premium/3238823.png?token=exp=1645020430~hmac=dec19819beeb9c0ecbb32e28ec880586';
+                                    }  
+                                    else{
+                                        img ='https://cdn-icons-png.flaticon.com/512/569/569501.png'
+                                    }
+                                    %>
+                                    <img src=<%=img %> width="61" height="58">
+                                    <p class="card-text"><%=things.skytextday%></p>
+                                    <p class="card-text mb-0"><b><%=things.day%></b></p>
+                                    <p class="card-text mb-0"><%=things.date%></p>
+                                    <p class="card-text mb-0"><%=things.high%>&#176 C</p>
+                                </center>
+                            </div>
+                        </div>
+                    </main>
+                </td>
+                <% } %>
+            </th>
+            </table> 
+        </center> 
+        </div>
+	</body>
+</html>
