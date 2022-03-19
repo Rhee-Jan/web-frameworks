@@ -14,10 +14,17 @@ const port = process.env.PORT || 3000;
 app.listen(port)
 app.set('view engine', 'ejs')
 
-const fs = require("firebase-admin");
 
+var fs = require("firebase-admin");
+let serviceAccount;
 
-const serviceAccount = require("./throwers-key.json");
+if(process.env.GOOGLE_CREDENTIALS!= null){
+    serviceAccount = JSON.parse(process.env.GOOGLE_CREDENTIALS)
+}
+else{
+    serviceAccount = require("./throwers-key.json")
+}
+
 fs.initializeApp({
     credential: fs.credential.cert(serviceAccount)
 });
